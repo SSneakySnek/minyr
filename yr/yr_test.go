@@ -1,16 +1,23 @@
-package yr
+package main
 
 import (
+	"encoding/csv"
 	"fmt"
-	"path/to/yr"
+	"os"
 )
 
-func test() {
-	filepath := "C:/Users/thomas/Desktop/visualCoding/minyr/kjevik-temp-celsius-20220318-20230318.csv"
-	numLines, err := yr.CountLinesInCSVFile(filepath)
+func main() {
+	file, err := os.Open("minyr/kjevik-temp-celsius-20220318-20230318.csv")
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	reader := csv.NewReader(file)
+	lines, err := reader.ReadAll()
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Printf("Number of lines in the CSV file: %d", numLines)
+	fmt.Printf("Det er så mange linjer i filen: %d", len(lines))
 }
