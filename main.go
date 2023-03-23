@@ -3,27 +3,50 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
+
+	"github.com/SSneakySnek/minyr/yr"
 )
 
 func main() {
-	var input string
-	scanner := bufio.NewScanner(os.Stdin)
+	for {
+		fmt.Println("Velg convert, average eller exit:")
+		input := readInput()
+		switch input {
 
-	for scanner.Scan() {
-		input = scanner.Text()
-		if input == "q" || input == "exit" {
-			fmt.Println("Exit")
-			os.Exit(0)
-		} else if input == "convert" {
-			fmt.Println("Konverterer alle målingene gitt i grader Celsius til grader Farenheit.")
+		case "convert":
+			fmt.Println("Konverterer alle målingene i grader Celsius til grader Fahrenheit.")
+			yr.ConvertTemperature()
 
-		} else {
-			fmt.Println("Venligst velg convert, average eller exit:")
+		case "average":
+			fmt.Println("Gjennomsnitt-kalkulator")
+			yr.AverageTemperature()
+
+			for {
+				fmt.Println("Avslutte? (y/n)")
+				input2 := readInput()
+				if input2 == "y" {
+					break
+				} else if input2 == "n" {
+					yr.AverageTemperature()
+				} else {
+					fmt.Println("Ugyldig input, prøv igjen")
+				}
+			}
+
+		case "exit":
+			fmt.Println("Programmet avsluttes.")
+			return
+		default:
+			fmt.Println("Ugyldig input, prøv igjen")
 		}
 	}
-	if err != nil {
-		log.Fatal(err)
+}
+
+func readInput() string {
+	scanner := bufio.NewScanner(os.Stdin)
+	if scanner.Scan() {
+		return scanner.Text()
 	}
+	return ""
 }
