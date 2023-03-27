@@ -10,35 +10,35 @@ import (
 
 func main() {
 	for {
-		fmt.Println("Velg convert, average eller exit:")
+		fmt.Println("Choose convert, average or exit:")
 		input := readInput()
 		switch input {
 
 		case "convert":
-			fmt.Println("Konverterer alle målingene i grader Celsius til grader Fahrenheit.")
+			fmt.Println("Converting all units of Celsius to Farenheit.")
 			yr.ConvertTemperature()
 
 		case "average":
-			fmt.Println("Gjennomsnitt-kalkulator")
+			fmt.Println("Average temperature calculator")
 			yr.AverageTemperature()
 
 			for {
-				fmt.Println("Avslutte? (y/n)")
+				fmt.Println("Quit? (y/n)")
 				input2 := readInput()
 				if input2 == "y" {
 					break
 				} else if input2 == "n" {
 					yr.AverageTemperature()
 				} else {
-					fmt.Println("Ugyldig input, prøv igjen")
+					fmt.Println("Invalid input, try again")
 				}
 			}
 
 		case "exit":
-			fmt.Println("Programmet avsluttes.")
+			fmt.Println("Exiting program.")
 			return
 		default:
-			fmt.Println("Ugyldig input, prøv igjen")
+			fmt.Println("Invalid input, try again")
 		}
 	}
 }
