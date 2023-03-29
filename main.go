@@ -22,6 +22,8 @@ func main() {
 			fmt.Println("Average temperature calculator")
 			yr.AverageTemperature()
 
+			readInput() // Add this line to clear any extra newline characters from the input buffer
+
 			for {
 				fmt.Println("Quit? (y/n)")
 				input2 := readInput()
